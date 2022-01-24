@@ -1,52 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'categories_graph.dart';
+import 'models/category_model.dart';
+import 'utils/temp_data.dart';
 import 'utils/utils.dart';
-
-class CategoryModel {
-  final String title;
-  final double percentage;
-  final Color color;
-
-  const CategoryModel({
-    required this.title,
-    required this.percentage,
-    required this.color,
-  });
-}
-
-const categoriesList = [
-  CategoryModel(
-    title: 'Apartment bills',
-    percentage: 33,
-    color: ColorTable.clrs_4,
-  ),
-  CategoryModel(
-    title: 'Groceries',
-    percentage: 25.5,
-    color: ColorTable.clrs_5,
-  ),
-  CategoryModel(
-    title: 'Cafes & Entertainment',
-    percentage: 21,
-    color: ColorTable.clrs_2,
-  ),
-  CategoryModel(
-    title: 'Transport',
-    percentage: 10.5,
-    color: ColorTable.clrs_3,
-  ),
-  CategoryModel(
-    title: 'Health',
-    percentage: 5.7,
-    color: ColorTable.clrs_1,
-  ),
-  CategoryModel(
-    title: 'Subscriptions',
-    percentage: 4.3,
-    color: ColorTable.clrs_6,
-  ),
-];
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({Key? key}) : super(key: key);
@@ -67,7 +24,7 @@ class CategoriesWidget extends StatelessWidget {
           Row(
             children: const [
               CategoriesGraph(),
-              _CategoriesTitles(),
+              CategoriesTitles(),
             ]
                 .map(
                   (e) => Expanded(child: e),
@@ -83,39 +40,44 @@ class CategoriesWidget extends StatelessWidget {
   }
 }
 
-class _CategoriesTitles extends StatelessWidget {
-  const _CategoriesTitles({Key? key}) : super(key: key);
+class CategoriesTitles extends StatelessWidget {
+  const CategoriesTitles({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (final category in categoriesList)
-          ListTile(
-            title: Text(
-              category.title,
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            subtitle: Container(
-              margin: const EdgeInsets.only(top: halfDefPaddingSize),
-              child: Row(
-                children: [
-                  Container(
-                    width: defPaddingSize,
-                    height: defPaddingSize,
-                    decoration: BoxDecoration(
-                      color: category.color,
-                      borderRadius: BorderRadius.circular(defPaddingSize),
-                    ),
-                  ),
-                  Text(category.percentage.toStringAsFixed(1) + '%'),
-                ].joinWidgetList(
-                  (index) => const SizedBox(width: halfDefPaddingSize),
-                ),
+    return Column(children: categoriesList.map(CategoryItem.new).toList());
+  }
+}
+
+class CategoryItem extends StatelessWidget {
+  final CategoryModel model;
+  const CategoryItem(this.model, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        model.title,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
+      subtitle: Container(
+        margin: const EdgeInsets.only(top: halfDefPaddingSize),
+        child: Row(
+          children: [
+            Container(
+              width: defPaddingSize,
+              height: defPaddingSize,
+              decoration: BoxDecoration(
+                color: model.color,
+                borderRadius: BorderRadius.circular(defPaddingSize),
               ),
             ),
+            Text(model.percentage.toStringAsFixed(1) + '%'),
+          ].joinWidgetList(
+            (index) => const SizedBox(width: halfDefPaddingSize),
           ),
-      ],
+        ),
+      ),
     );
   }
 }

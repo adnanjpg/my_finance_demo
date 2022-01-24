@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'categories_widget.dart';
 import 'package:pie_chart/pie_chart.dart';
+
+import 'utils/temp_data.dart';
 
 class CategoriesGraph extends StatelessWidget {
   const CategoriesGraph({Key? key}) : super(key: key);
