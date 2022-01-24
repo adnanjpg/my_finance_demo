@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'categories_widget.dart';
 
+import 'categories_widget.dart';
 import 'home_appbar.dart';
+import 'transactions_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class Home extends StatelessWidget {
       body: ListView(
         children: const [
           CategoriesWidget(),
+          TransactionsWidget(),
         ],
       ),
     );
