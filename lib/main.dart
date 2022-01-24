@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Buntype',
         colorScheme: const ColorScheme.dark(
           primary: ColorTable.primary,
         ),
