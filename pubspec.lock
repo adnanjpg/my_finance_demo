@@ -95,6 +95,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.8.0"
+  pie_chart:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: totalDegrees
+      resolved-ref: e664cd369898d44dbfee06280dd0466ffd8bfe63
+      url: "https://www.github.com/adnanjpg/pie_chart.git"
+    source: git
+    version: "5.1.0"
   sky_engine:
     dependency: transitive
     description: flutter

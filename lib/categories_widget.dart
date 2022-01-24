@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_demo/utils/utils.dart';
+import 'utils/utils.dart';
+
+import 'categories_graph.dart';
 
 class CategoryModel {
   final String title;
@@ -13,7 +15,7 @@ class CategoryModel {
   });
 }
 
-const _categories = [
+const categoriesList = [
   CategoryModel(
     title: 'Apartment bills',
     percentage: 33,
@@ -58,7 +60,7 @@ class CategoriesWidget extends StatelessWidget {
           margin: const EdgeInsets.all(defPaddingSize),
           child: Row(
             children: const [
-              _CategoriesGraph(),
+              CategoriesGraph(),
               _CategoriesTitles(),
             ]
                 .map(
@@ -75,15 +77,6 @@ class CategoriesWidget extends StatelessWidget {
   }
 }
 
-class _CategoriesGraph extends StatelessWidget {
-  const _CategoriesGraph({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 class _CategoriesTitles extends StatelessWidget {
   const _CategoriesTitles({Key? key}) : super(key: key);
 
@@ -91,7 +84,7 @@ class _CategoriesTitles extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (final category in _categories)
+        for (final category in categoriesList)
           Container(
             margin: const EdgeInsets.only(bottom: defPaddingSize),
             child: ListTile(

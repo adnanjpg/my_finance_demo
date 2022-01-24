@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_demo/categories_widget.dart';
+import 'categories_widget.dart';
 
 import 'home_appbar.dart';
 

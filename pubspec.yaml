@@ -7,6 +7,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  pie_chart: 
+    # ^5.1.0
+    # path: C:/Users/adnan/pie_chart
+    # I've implemented the half pie feature, however,
+    # as it is not merged yet, I'll be using my own fork
+    # temporarily.
+    git: 
+      url: https://www.github.com/adnanjpg/pie_chart.git
+      ref: totalDegrees
 dev_dependencies:
   flutter_test:
     sdk: flutter
