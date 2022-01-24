@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'utils/utils.dart';
 
 import 'categories_graph.dart';
+import 'utils/utils.dart';
 
 class CategoryModel {
   final String title;
@@ -53,12 +53,18 @@ class CategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('Categories'),
-        Container(
-          margin: const EdgeInsets.all(defPaddingSize),
-          child: Row(
+    return Container(
+      margin: const EdgeInsets.all(defPaddingSize),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Categories',
+            style: Theme.of(context).textTheme.headline4?.copyWith(
+                  color: Colors.white,
+                ),
+          ),
+          Row(
             children: const [
               CategoriesGraph(),
               _CategoriesTitles(),
@@ -71,8 +77,8 @@ class CategoriesWidget extends StatelessWidget {
                   (index) => const SizedBox(width: defPaddingSize),
                 ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -85,28 +91,26 @@ class _CategoriesTitles extends StatelessWidget {
     return Column(
       children: [
         for (final category in categoriesList)
-          Container(
-            margin: const EdgeInsets.only(bottom: defPaddingSize),
-            child: ListTile(
-              title: Text(category.title),
-              subtitle: Container(
-                margin: const EdgeInsets.only(top: halfDefPaddingSize),
-                child: Row(
-                  children: [
-                    Container(
-                      width: defPaddingSize,
-                      height: defPaddingSize,
-                      decoration: BoxDecoration(
-                        color: category.color,
-                        borderRadius: BorderRadius.circular(defPaddingSize),
-                      ),
+          ListTile(
+            title: Text(
+              category.title,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            subtitle: Container(
+              margin: const EdgeInsets.only(top: halfDefPaddingSize),
+              child: Row(
+                children: [
+                  Container(
+                    width: defPaddingSize,
+                    height: defPaddingSize,
+                    decoration: BoxDecoration(
+                      color: category.color,
+                      borderRadius: BorderRadius.circular(defPaddingSize),
                     ),
-                    Text(
-                      category.percentage.toStringAsFixed(1) + '%',
-                    ),
-                  ].joinWidgetList(
-                    (index) => const SizedBox(width: halfDefPaddingSize),
                   ),
+                  Text(category.percentage.toStringAsFixed(1) + '%'),
+                ].joinWidgetList(
+                  (index) => const SizedBox(width: halfDefPaddingSize),
                 ),
               ),
             ),
